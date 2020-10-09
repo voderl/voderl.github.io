@@ -1,4 +1,3 @@
-const { Animate, AnimationFrame, update, Transform, Easing } = Tween;
 const WIDTH = 32;
 const HEIGHT = WIDTH;
 function createZone() {
@@ -6,8 +5,8 @@ function createZone() {
   el.width = WIDTH;
   el.height = HEIGHT;
   el.style.cssText = `
-    width: 400px;
-    height: 400px;
+    width: 200px;
+    height: 200px;
     image-rendering: pixelated;
   `;
   document.body.appendChild(el);
@@ -29,26 +28,58 @@ function getImageData(src) {
     img.onerror = (err) => reject(err);
   });
 }
-async function tweenImageData() {
-  const ctx = await getImageData('icons.png');
-  const fromData = ctx.getImageData(0, 32 * 3, 32, 32);
-  const toData = ctx.getImageData(0, 32 * 4, 32, 32);
-  const playStage = createZone();
-  playStage.putImageData(fromData, 0, 0);
-  const btn = document.createElement('button');
-  btn.innerText = '按下开始';
-  document.body.appendChild(btn);
-  btn.addEventListener('click', () => {
-    btn.disabled = true;
-    Animate(toData.data, {
-      easing: Easing.Quadratic.In,
-    })
-      .transform('yoyo')
-      .apply(fromData.data, 1000)
-      .on('update', () => {
-        playStage.putImageData(fromData, 0, 0);
-      })
-      .on('complete', () => (btn.disabled = false));
-  });
+function animate(time) {
+  requestAnimationFrame(animate);
+  TWEEN.update(time);
 }
-tweenImageData();
+requestAnimationFrame(animate);
+(function () {
+  async function tweenImageData() {
+    const ctx = await getImageData('icons.png');
+    (function () {
+      const { Animate, AnimationFrame, update, Transform, Easing } = Tween;
+      const fromData = ctx.getImageData(0, 32 * 3, 32, 32);
+      const toData = ctx.getImageData(0, 32 * 4, 32, 32);
+      const playStage = createZone();
+      playStage.putImageData(fromData, 0, 0);
+      const btn = document.createElement('button');
+      btn.innerText = 'get start with tween-animate';
+      document.body.appendChild(btn);
+      btn.addEventListener('click', () => {
+        btn.disabled = true;
+        Animate(toData.data, {
+          easing: Easing.Quadratic.In,
+        })
+          .transform('yoyo')
+          .apply(fromData.data, 1000)
+          .on('update', () => {
+            playStage.putImageData(fromData, 0, 0);
+          })
+          .on('complete', () => (btn.disabled = false));
+      });
+    })();
+    document.body.appendChild(document.createElement('br'));
+    (function () {
+      const fromData = ctx.getImageData(0, 32 * 3, 32, 32);
+      const toData = ctx.getImageData(0, 32 * 4, 32, 32);
+      const playStage = createZone();
+      playStage.putImageData(fromData, 0, 0);
+      const btn = document.createElement('button');
+      btn.innerText = 'get start with tween';
+      document.body.appendChild(btn);
+      btn.addEventListener('click', () => {
+        btn.disabled = true;
+        new TWEEN.Tween(fromData.data)
+          .to(toData.data, 1000)
+          .onUpdate(() => {
+            playStage.putImageData(fromData, 0, 0);
+          })
+          .repeat(1)
+          .yoyo(true)
+          .onComplete(() => (btn.disabled = false))
+          .start();
+      });
+    })();
+  }
+  tweenImageData();
+})();
