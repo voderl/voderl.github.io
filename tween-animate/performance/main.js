@@ -1,6 +1,7 @@
 const WIDTH = 32;
 const HEIGHT = WIDTH;
 function createZone() {
+  const div = document.createElement('div');
   const el = document.createElement('canvas');
   el.width = WIDTH;
   el.height = HEIGHT;
@@ -9,7 +10,12 @@ function createZone() {
     height: 200px;
     image-rendering: pixelated;
   `;
-  document.body.appendChild(el);
+  div.appendChild(el);
+  div.style.cssText = `
+    display: inline-block;
+    background-color: black;
+  `;
+  document.body.appendChild(div);
   return el.getContext('2d');
 }
 
