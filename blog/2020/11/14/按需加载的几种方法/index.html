@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><meta name="generator" content="Hexo 3.9.0">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="笑沐泽的博客">
+    <meta name="keyword" content="笑沐泽">
+    <link rel="shortcut icon" href="/blog/img/favicon.ico">
+
+    <title>
+        
+        按需加载的一些方法 - 笑沐泽的博客 | voderl&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/blog/css/aircloud.css">
+    <link rel="stylesheet" href="/blog/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i> 一些稀奇古怪的想法 </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar radius">
+            <img src="/blog/img/avatar.png" />
+        </div>
+        <div class="name">
+            <i>voderl</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/blog/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/blog/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#按需加载"><span class="toc-text">按需加载</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#使用getter"><span class="toc-text">使用getter</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Object-defineProperty"><span class="toc-text">使用Object.defineProperty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重定义"><span class="toc-text">重定义</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#粒度的控制"><span class="toc-text">粒度的控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-text">总结</span></a></li></ol>
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+
+        <div class="index-about-mobile">
+            <i> 一些稀奇古怪的想法 </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        按需加载的一些方法
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2020-11-14 22:08:37</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/blog/tags/#lazy loading" title="lazy loading">lazy loading</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p>​    当一个产品服务的客户足够多时，就一定有一些功能是只服务部分用户的。因此对不使用此功能的用户而言，加载这部分的代码并执行是完全不必要的事情。按需加载是一种很优雅的解决方案。</p>
+<p>​    在此先不讨论图片等素材的按需加载，仅仅拿代码中的按需加载为例。</p>
+<h2 id="按需加载"><a href="#按需加载" class="headerlink" title="按需加载"></a>按需加载</h2><p>​    试想一个Loader类型，开发者可以自行生成一个示例。如果想要内置就生成一个实例以方便使用，如何实现更好呢？</p>
+<h3 id="使用getter"><a href="#使用getter" class="headerlink" title="使用getter"></a>使用getter</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 以下代码参考自[pixi.js](https://pixijs.download/dev/docs/PIXI.Loader.html)</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Loader</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">get</span> shared() &#123;</span><br><span class="line">        <span class="keyword">let</span> shared = Loader._shared;</span><br><span class="line">        <span class="keyword">if</span> (!shared) &#123;</span><br><span class="line">            shared = <span class="keyword">new</span> Loader();</span><br><span class="line">            Loader._shared = shared;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> shared;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Loader.shared  <span class="comment">// Loader &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<p>这样可以实现在访问shared的初次，才生成对应的实例，后续访问直接返回该实例。</p>
+<h3 id="使用Object-defineProperty"><a href="#使用Object-defineProperty" class="headerlink" title="使用Object.defineProperty"></a>使用Object.defineProperty</h3><p>在访问时会生成实例，但getter的访问效率不及键值对象。有没有办法在getter生成后直接把对应的键值赋值到此对象上呢？Object.defineProperty能很好地实现。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &#123;obj&#125; - 对象</span></span><br><span class="line"><span class="comment"> * &#123;key&#125; - 对象的键值</span></span><br><span class="line"><span class="comment"> * &#123;initValue&#125; - 生成键值的函数，返回值为作为键key对应的value</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">lazy</span>(<span class="params">obj, key, initValue</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> getValue = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">let</span> v = initValue.apply(<span class="keyword">this</span>);</span><br><span class="line">        <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">            writable: <span class="literal">true</span>,</span><br><span class="line">        	enumerable: <span class="literal">true</span>,</span><br><span class="line">            configurable: <span class="literal">true</span>,</span><br><span class="line">            value: v,</span><br><span class="line">        &#125;); <span class="comment">// 把value直接更新，取消掉get</span></span><br><span class="line">        getValue = <span class="literal">null</span>;</span><br><span class="line">        <span class="keyword">return</span> v;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">Object</span>.defineProperty(obj, key, &#123;</span><br><span class="line">        enumerable: <span class="literal">true</span>,</span><br><span class="line">        configurable: <span class="literal">true</span>,</span><br><span class="line">        <span class="keyword">get</span>: getValue,</span><br><span class="line">        <span class="keyword">set</span>(v) &#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'lazy value cannot be assigned'</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Loader</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">lazy(Loader, <span class="string">'shared'</span>, () =&gt; <span class="keyword">new</span> Loader());</span><br><span class="line">Loader.shared <span class="comment">// Loader &#123;&#125;</span></span><br></pre></td></tr></table></figure>
+<h3 id="重定义"><a href="#重定义" class="headerlink" title="重定义"></a>重定义</h3><p>Object.defineProperty就是一种对值的重定义。对值进行重定义这种思想有没有可能在其他方面应用呢？</p>
+<p>比如说当一个函数执行返回的结果是异步的时候，有没有可能直接将这个函数给按需加载。</p>
+<p>可不可以先把这个函数抽象成一个delay函数，第一次的调用都会让其开始加载这个文件，在没有加载成功前的调用都会按顺序记录调用参数。在加载成功后再执行之前保存的调用参数，并在后续调用时直接执行加载成功后的函数。</p>
+<p>当然，此函数也不能有其返回值。因为未加载前不能确定函数是否存在返回值。</p>
+<p>示例如下。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// hello.js</span></span><br><span class="line"><span class="built_in">window</span>.getValueAsync = <span class="function"><span class="keyword">function</span>(<span class="params">arg, cb</span>) </span>&#123;</span><br><span class="line">    cb(<span class="string">'hello'</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// index.js</span></span><br><span class="line"><span class="keyword">const</span> getValueAsync = delay(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    loadScript(<span class="string">'./hello.js'</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        resolve(<span class="built_in">window</span>.getValueAsync);</span><br><span class="line">        <span class="keyword">delete</span> <span class="built_in">window</span>.getValueAsync</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line">getValueAsync(<span class="string">'xxx'</span>, (value) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;)</span><br><span class="line">getValueAsync(<span class="string">'xxx2'</span>, (value) =&gt; &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;)</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">delay</span>(<span class="params">wrapperFunc</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> delayed = [];</span><br><span class="line">    <span class="keyword">let</span> isResolved = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">let</span> resolvedFunc = <span class="literal">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">resultFunc</span>) </span>&#123; <span class="comment">// 加载成功</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">typeof</span> resultFunc !== <span class="string">'function'</span>) <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">'resolve function please'</span>);</span><br><span class="line">        <span class="keyword">if</span> (isResolved) <span class="keyword">return</span>;</span><br><span class="line">        delayed.forEach(<span class="function">(<span class="params">[_this, args]</span>) =&gt;</span> &#123;</span><br><span class="line">          resultFunc.apply(_this, args);</span><br><span class="line">        &#125;);</span><br><span class="line">        delayed = <span class="literal">null</span>;</span><br><span class="line">        resolvedFunc = resultFunc;</span><br><span class="line">        isResolved = <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">delayedFunc</span>(<span class="params"></span>) </span>&#123; </span><br><span class="line">        <span class="comment">//在没有resolve时存储参数</span></span><br><span class="line">        <span class="comment">// resolve之后做一个转发，保证可以通过同一个之前的变量调用如 getValueAsync</span></span><br><span class="line">        <span class="keyword">if</span> (isResolved) <span class="keyword">return</span> resolvedFunc.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">        <span class="comment">// 还没调用过就开始初始化</span></span><br><span class="line">        <span class="keyword">if</span> (delayed.length === <span class="number">0</span>) wrapperFunc(resolve);</span><br><span class="line">        delayed.push([<span class="keyword">this</span>, <span class="built_in">arguments</span>]);</span><br><span class="line">        <span class="keyword">return</span> <span class="string">'delaying'</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 也可以把异步callback来改为promise</span></span><br></pre></td></tr></table></figure>
+<p>因此为了按需加载，也可以把先加载再同步执行的代码改写为异步执行，在执行时才加载的方案。</p>
+<h2 id="粒度的控制"><a href="#粒度的控制" class="headerlink" title="粒度的控制"></a>粒度的控制</h2><p>​    按需加载就注定需要把加载的各个部分分离成不同的文件，bundleless工具在开发模式下就是最细粒度的按需加载。但在用户使用过程中，受限于网速，不能以最细粒度完成按需加载。</p>
+<p>​    可以将较细粒度的文件分别打包。打包的大小可以自己设置一个定值最大值(如500KB)。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>​    在访问某些网页游戏时，总需要过多的文件加载才能正式进入游戏。因此有一个颇为玩具性质的想法，在使用的时候才开始加载。比如下面拿pixi.js举例：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">getSprite(<span class="string">'ui/atk.png'</span>);</span><br><span class="line"><span class="comment">// 在没有加载时 先返回一个Loading Sprite, 加载成功后再去更新Loading Sprite。</span></span><br><span class="line"><span class="comment">// 以此来将异步的调用再次转换为同步的使用方法。</span></span><br></pre></td></tr></table></figure>
+<p>​    如果在最底层的实现都是按需加载，能否在顶层实现一个按需加载的应用呢？</p>
+<p>​    当然加载动画也是需要的，每点击一个功能都要进行加载的话自然也很不方便，有没有什么方便进行预加载的手段呢？</p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        
+
+        
+
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/voderl">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+
+    </ul>
+    
+    <p>
+        <span>/</span>
+        
+        <span><a href="https://github.com/voderl">github</a></span>
+        <span>/</span>
+        
+        <span><a href="https://h5mota.com">HTML5魔塔</a></span>
+        <span>/</span>
+        
+        <span><a href="http://pixijs.download/release/docs/index.html">pixi</a></span>
+        <span>/</span>
+        
+    </p>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/blog/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/blog/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+    <script>
+        /**
+         *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+         *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables
+        */
+        if( '' || '')
+        var disqus_config = function () {
+            this.page.url = '';  // Replace PAGE_URL with your page's canonical URL variable
+            this.page.identifier = ''; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+        };
+
+        (function() { // DON'T EDIT BELOW THIS LINE
+            var d = document, s = d.createElement('script');
+            s.src = 'https://voderl.disqus.com/embed.js';
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        })();
+    </script>
+
+
+
+</html>

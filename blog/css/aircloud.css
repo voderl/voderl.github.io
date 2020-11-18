@@ -1,11 +1,9 @@
 /*varibles*/
-* {
-  font-family: "italic", Helvetica, Arial, "Heiti SC", "Microsoft YaHei";
-}
 body,
 html {
   margin: 0;
   padding: 0;
+  font-family: 'italic', Helvetica, Arial, 'Heiti SC', 'Microsoft YaHei';
 }
 body {
   margin-left: calc(100vw - 100%) !important;
@@ -1234,4 +1232,18 @@ pre .javascript .function {
 .gitment-comment p {
   text-indent: 0;
 }
-/*# sourceMappingURL=aircloud.css.map */
+@font-face {
+  font-family: 'SourceCodePro';
+  src: url('/blog/fonts/SourceCodePro-Medium.ttf') format('truetype');
+}
+pre,
+code {
+  font-family: 'SourceCodePro', consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', monospace;
+}
+.post-content p {
+  color: #202020;
+}
+.nav .avatar-name .name i {
+  font-style: normal;
+  font-family: 'SourceCodePro', consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', monospace !important;
+}
