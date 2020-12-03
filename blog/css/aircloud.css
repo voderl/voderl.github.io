@@ -1239,6 +1239,7 @@ pre .javascript .function {
 pre,
 code {
   font-family: 'SourceCodePro', consolas, Menlo, 'PingFang SC', 'Microsoft YaHei', monospace;
+  letter-spacing: 0px;
 }
 .post-content p {
   color: #202020;
