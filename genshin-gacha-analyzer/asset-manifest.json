@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/genshin-gacha-analyzer/static/css/main.22b6e383.chunk.css",
-    "main.js": "/genshin-gacha-analyzer/static/js/main.0c2e537d.chunk.js",
-    "main.js.map": "/genshin-gacha-analyzer/static/js/main.0c2e537d.chunk.js.map",
+    "main.js": "/genshin-gacha-analyzer/static/js/main.afb3959d.chunk.js",
+    "main.js.map": "/genshin-gacha-analyzer/static/js/main.afb3959d.chunk.js.map",
     "runtime-main.js": "/genshin-gacha-analyzer/static/js/runtime-main.cf7028bb.js",
     "runtime-main.js.map": "/genshin-gacha-analyzer/static/js/runtime-main.cf7028bb.js.map",
     "static/css/2.f3f01324.chunk.css": "/genshin-gacha-analyzer/static/css/2.f3f01324.chunk.css",
@@ -22,6 +22,6 @@
     "static/css/2.f3f01324.chunk.css",
     "static/js/2.d2cfdaad.chunk.js",
     "static/css/main.22b6e383.chunk.css",
-    "static/js/main.0c2e537d.chunk.js"
+    "static/js/main.afb3959d.chunk.js"
   ]
 }
