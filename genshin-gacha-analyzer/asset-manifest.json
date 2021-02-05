@@ -1,25 +1,27 @@
 {
   "files": {
     "main.css": "/genshin-gacha-analyzer/static/css/main.22b6e383.chunk.css",
-    "main.js": "/genshin-gacha-analyzer/static/js/main.229572c9.chunk.js",
-    "main.js.map": "/genshin-gacha-analyzer/static/js/main.229572c9.chunk.js.map",
-    "runtime-main.js": "/genshin-gacha-analyzer/static/js/runtime-main.ea360f38.js",
-    "runtime-main.js.map": "/genshin-gacha-analyzer/static/js/runtime-main.ea360f38.js.map",
+    "main.js": "/genshin-gacha-analyzer/static/js/main.0c2e537d.chunk.js",
+    "main.js.map": "/genshin-gacha-analyzer/static/js/main.0c2e537d.chunk.js.map",
+    "runtime-main.js": "/genshin-gacha-analyzer/static/js/runtime-main.cf7028bb.js",
+    "runtime-main.js.map": "/genshin-gacha-analyzer/static/js/runtime-main.cf7028bb.js.map",
     "static/css/2.f3f01324.chunk.css": "/genshin-gacha-analyzer/static/css/2.f3f01324.chunk.css",
-    "static/js/2.7cd71bdd.chunk.js": "/genshin-gacha-analyzer/static/js/2.7cd71bdd.chunk.js",
-    "static/js/2.7cd71bdd.chunk.js.map": "/genshin-gacha-analyzer/static/js/2.7cd71bdd.chunk.js.map",
-    "static/js/3.58e4811a.chunk.js": "/genshin-gacha-analyzer/static/js/3.58e4811a.chunk.js",
-    "static/js/3.58e4811a.chunk.js.map": "/genshin-gacha-analyzer/static/js/3.58e4811a.chunk.js.map",
+    "static/js/2.d2cfdaad.chunk.js": "/genshin-gacha-analyzer/static/js/2.d2cfdaad.chunk.js",
+    "static/js/2.d2cfdaad.chunk.js.map": "/genshin-gacha-analyzer/static/js/2.d2cfdaad.chunk.js.map",
+    "static/js/3.cd2e3410.chunk.js": "/genshin-gacha-analyzer/static/js/3.cd2e3410.chunk.js",
+    "static/js/3.cd2e3410.chunk.js.map": "/genshin-gacha-analyzer/static/js/3.cd2e3410.chunk.js.map",
     "index.html": "/genshin-gacha-analyzer/index.html",
     "static/css/2.f3f01324.chunk.css.map": "/genshin-gacha-analyzer/static/css/2.f3f01324.chunk.css.map",
     "static/css/main.22b6e383.chunk.css.map": "/genshin-gacha-analyzer/static/css/main.22b6e383.chunk.css.map",
-    "static/js/2.7cd71bdd.chunk.js.LICENSE.txt": "/genshin-gacha-analyzer/static/js/2.7cd71bdd.chunk.js.LICENSE.txt"
+    "static/js/2.d2cfdaad.chunk.js.LICENSE.txt": "/genshin-gacha-analyzer/static/js/2.d2cfdaad.chunk.js.LICENSE.txt",
+    "static/media/achievement_achieved.49d0cc2e.png": "/genshin-gacha-analyzer/static/media/achievement_achieved.49d0cc2e.png",
+    "static/media/achievement_show.b270d366.png": "/genshin-gacha-analyzer/static/media/achievement_show.b270d366.png"
   },
   "entrypoints": [
-    "static/js/runtime-main.ea360f38.js",
+    "static/js/runtime-main.cf7028bb.js",
     "static/css/2.f3f01324.chunk.css",
-    "static/js/2.7cd71bdd.chunk.js",
+    "static/js/2.d2cfdaad.chunk.js",
     "static/css/main.22b6e383.chunk.css",
-    "static/js/main.229572c9.chunk.js"
+    "static/js/main.0c2e537d.chunk.js"
   ]
 }
