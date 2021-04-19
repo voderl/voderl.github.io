@@ -37,11 +37,34 @@ function getImageData(src) {
 function animate(time) {
   requestAnimationFrame(animate);
   TWEEN.update(time);
+  Animate.update();
 }
 requestAnimationFrame(animate);
 (function () {
   async function tweenImageData() {
     const ctx = await getImageData('icons.png');
+    (function () {
+      const fromData = ctx.getImageData(0, 32 * 3, 32, 32);
+      const toData = ctx.getImageData(0, 32 * 4, 32, 32);
+      const playStage = createZone();
+      playStage.putImageData(fromData, 0, 0);
+      const btn = document.createElement('button');
+      btn.innerText = 'get start with tween-animate v3';
+      document.body.appendChild(btn);
+      btn.addEventListener('click', () => {
+        btn.disabled = true;
+        Animate(toData.data, {
+          time: 1000,
+        })
+          .transform('yoyo')
+          .apply(fromData.data)
+          .on('update', (v) => {
+            playStage.putImageData(fromData, 0, 0);
+          })
+          .on('complete', () => (btn.disabled = false));
+      });
+    })();
+    document.body.appendChild(document.createElement('br'));
     (function () {
       const { Animate, AnimationFrame, update, Transform, Easing } = Tween;
       const fromData = ctx.getImageData(0, 32 * 3, 32, 32);
@@ -49,13 +72,11 @@ requestAnimationFrame(animate);
       const playStage = createZone();
       playStage.putImageData(fromData, 0, 0);
       const btn = document.createElement('button');
-      btn.innerText = 'get start with tween-animate';
+      btn.innerText = 'get start with tween-animate v2';
       document.body.appendChild(btn);
       btn.addEventListener('click', () => {
         btn.disabled = true;
-        Animate(toData.data, {
-          easing: Easing.Quadratic.In,
-        })
+        Animate(toData.data)
           .transform('yoyo')
           .apply(fromData.data, 1000)
           .on('update', () => {
@@ -71,7 +92,7 @@ requestAnimationFrame(animate);
       const playStage = createZone();
       playStage.putImageData(fromData, 0, 0);
       const btn = document.createElement('button');
-      btn.innerText = 'get start with tween';
+      btn.innerText = 'get start with tween.js';
       document.body.appendChild(btn);
       btn.addEventListener('click', () => {
         btn.disabled = true;
